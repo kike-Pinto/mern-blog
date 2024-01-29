@@ -1,6 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import userRoutes from './routes/user.route.js'
 
 dotenv.config()
 
@@ -15,9 +16,8 @@ mongoose
     console.log(err)
   })
 
-// mongodb+srv://cripintort:AKtaBtgnrd2vAeK5@mern-blog-2.zrbnuea.mongodb.net/?retryWrites=true&w=majority
-// AKtaBtgnrd2vAeK5
-
 app.listen(3000, () => {
   console.log('Server in running on port 3000!!!')
 })
+
+app.use('/api/user', userRoutes)
