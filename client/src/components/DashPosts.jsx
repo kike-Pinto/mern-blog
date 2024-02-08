@@ -30,7 +30,7 @@ const DashPosts = () => {
     if (currentUser.isAdmin) {
       fetchPosts()
     }
-  }, [currentUser._id, currentUser.isAdmin])
+  }, [currentUser._id])
 
   const handleShowMore = async () => {
     const startIndex = userPosts.length
