@@ -10,7 +10,7 @@ const CommentSection = ({ postId }) => {
   const { currentUser } = useSelector((state) => state.user)
   const [comment, setComment] = useState('')
   const [commentError, setCommentError] = useState(null)
-  const [comments, setComments] = useState('')
+  const [comments, setComments] = useState([])
   // console.log(comments)
 
   const handleSubmit = async (e) => {
@@ -84,6 +84,14 @@ const CommentSection = ({ postId }) => {
     }
   }
 
+  const handleEdit = async (comment, editedContent) => {
+    setComments(
+      comments.map((c) =>
+        c._id === comment._id ? { ...c, content: editedContent } : c
+      )
+    )
+  }
+
   return (
     <div className='max-w-2xl mx-auto w-full p-3'>
       {currentUser ? (
@@ -153,6 +161,7 @@ const CommentSection = ({ postId }) => {
                 key={comment._id}
                 comment={comment}
                 onLike={handleLike}
+                onEdit={handleEdit}
               />
             ))}
         </>
